@@ -1,4 +1,4 @@
-package com.wide.util;
+package com.thread.sleepisbad;
 
 public class BadPoolTest extends Thread{
     private int client = 0;
@@ -17,10 +17,10 @@ public class BadPoolTest extends Thread{
         }
     }
     public void run(){
-        PoolManager manager = null;
+        BadPoolManager manager = null;
         PoolObject obj = null;
         try {
-            manager = PoolManager.getInstance();
+            manager = BadPoolManager.getInstance();
             obj = manager.getPoolObject();
             obj.execute();
         }

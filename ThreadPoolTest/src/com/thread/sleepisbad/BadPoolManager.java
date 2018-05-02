@@ -1,21 +1,21 @@
-package com.wide.util;
+package com.thread.sleepisbad;
 
-public class PoolManager {
-    private static PoolManager manager = null;
+public class BadPoolManager {
+    private static BadPoolManager manager = null;
 
     private int MAX = 20;
     private int count = 0;
     private java.util.Vector pool = new java.util.Vector();
 
-    private PoolManager() {
+    private BadPoolManager() {
         super();
         for(int i=0;i<MAX;i++){
             pool.addElement(new PoolObject(new Integer(i)));
         }
     }
-    public static synchronized PoolManager getInstance() {
+    public static synchronized BadPoolManager getInstance() {
         if ( manager == null ) {
-            manager = new PoolManager();
+            manager = new BadPoolManager();
         }
         return manager;    
     }
@@ -25,7 +25,7 @@ public class PoolManager {
             try{
                 Thread.sleep(1000);
             }catch(Exception e){}
-            System.out.println("PoolManager : sleep... current count=" + count);
+            System.out.println("BadPoolManager : sleep... current count=" + count);
         }
         obj = (PoolObject)pool.elementAt(0);
         pool.removeElementAt(0);
@@ -35,6 +35,6 @@ public class PoolManager {
     public synchronized void release(PoolObject obj) {
         count--;
         pool.addElement(obj);
-        System.out.println("PoolManager: released ... current count=" + count);
+        System.out.println("BadPoolManager: released ... current count=" + count);
     }
 }

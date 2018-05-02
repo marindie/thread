@@ -1,4 +1,4 @@
-package com.wide.util;
+package com.thread.sleepisbad;
 
 public class PoolObject {
     private static java.util.Random random = new java.util.Random();
